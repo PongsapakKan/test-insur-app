@@ -33,7 +33,7 @@ export async function getProduct(req: GetProductRequest): Promise<GetProductResp
             plan: req.plan,
             premium: req.premium,
             paymentTerm: req.paymentTerm,
-            sumAssured: product
+            sumAssured: product.baseSumAssured
         };
         saveRegisterInfo(doc);
 

@@ -2,7 +2,7 @@ export interface GetProductRequest {
     firstName: string,
     lastName: string,
     gender: string,
-    dob: Date,
+    dob: string,
     plan: string,
     premium: number,
     paymentTerm: string

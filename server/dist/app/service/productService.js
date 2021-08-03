@@ -45,7 +45,7 @@ function getProduct(req) {
                 plan: req.plan,
                 premium: req.premium,
                 paymentTerm: req.paymentTerm,
-                sumAssured: product
+                sumAssured: product.baseSumAssured
             };
             productRepository_1.saveRegisterInfo(doc);
             let planPackage;

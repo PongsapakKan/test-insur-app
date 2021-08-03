@@ -37,3 +37,11 @@
     transform: translateY(0px);
   }
 }
+
+.main {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 20px;
+  padding-bottom: 2em;
+}

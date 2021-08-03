@@ -77,7 +77,7 @@ router.post('/', json(), validateCaculateRequest, (req: Request, res: Response) 
   const getProductRequest: GetProductRequest = req.body as GetProductRequest;
   getProduct(getProductRequest)
     .then((data) => {
-      res.status(201).json(data);
+      res.status(200).json(data);
     })
     .catch(() => {
       res.status(500).json({ errors: [{ message: 'Internal server error.'}]})

@@ -2,23 +2,31 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ThunkAction } from 'redux-thunk';
 import { RootState } from '../../app/store';
 import axios from "axios";
+import { GetProductResponse, GetProductRequest } from './getProductModel';
 
 const initialState = {
-    result: {},
-    loading: true
-}
-
-export class RegisterResponse {
-    success!: boolean;
+    result: {
+        baseSumAssured: 0,
+        baseAnnualPremium: 0,
+        productTerm: 0,
+        paymentFrequency: '',
+        plan: {
+            code: '',
+            package: ''
+        }
+    },
+    loading: true,
+    success: false
 }
 
 export const calculateSumAssureSlice = createSlice({
-    name: 'registers',
+    name: 'calculateProduct',
     initialState,
     reducers: {
         calculateSumAssure: (state, action) => {
             state.result = action.payload
             state.loading = false
+            state.success = true
         }
     }
 })
@@ -27,15 +35,17 @@ export default calculateSumAssureSlice.reducer;
 
 const { calculateSumAssure } = calculateSumAssureSlice.actions;
 
-export const postRegisterInsurance = (): ThunkAction<void, RootState, unknown, PayloadAction<RegisterResponse>> => async dispatch => {
-    axios.post('')
+export const calculateInsurance = (req: GetProductRequest): ThunkAction<void, RootState, unknown, PayloadAction<GetProductResponse>> => async dispatch => {
+    try {
+        axios.post('http://localhost:3001/api/getProduct', req, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
         .then((resp) => {
-            dispatch(calculateSumAssure(resp))
+            dispatch(calculateSumAssure(resp.data));
         })
-        .catch((error) => {
-            dispatch(calculateSumAssure({
-                isSuccess: false
-            }))
-        })
-    
+    } catch (error) {
+        return console.log(error);
+    }
 }
