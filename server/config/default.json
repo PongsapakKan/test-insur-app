@@ -1,0 +1,9 @@
+{
+    "MongoURI": "mongodb://localhost:27017/test2",
+    "ExternalEndpoint": {
+        "getProduct": {
+            "url": "https://api.fwd.co.th/dev-ecommerce/getProduct",
+            "token": "7454ba0a-cbf4-4282-aee6-56e6125718b2"
+        }
+    }
+}
