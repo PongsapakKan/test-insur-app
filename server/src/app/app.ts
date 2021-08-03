@@ -2,7 +2,7 @@ import express from 'express';
 import http from 'http';
 import connectDB from './webConfig/database';
 
-const registerRoute = require('./routes/register');
+const router = require('./routes/product');
 
 connectDB();
 const app = express();
@@ -12,12 +12,7 @@ app.set('port', port);
 var server = http.createServer(app);
 server.listen(port);
 
-
-app.get('/', (req, res) => {
-  res.send('The sedulous hyena ate the antelope!');
-});
-
-app.use('/api/register', registerRoute);
+app.use('/api/getProduct', router);
 
 app.listen((port, err) => {
   if (err) {

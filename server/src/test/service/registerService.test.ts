@@ -1,3 +1,3 @@
-import { register } from '../../app/service/registerService';
+import { getProduct } from '../../app/service/productService';
 
 const test = require('jest');

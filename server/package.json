@@ -10,19 +10,19 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/express": "^4.16.1",
+    "@types/express": "^4.17.13",
     "jest": "^27.0.6",
-    "tslint": "^5.12.1",
-    "typescript": "^4.2.4"
+    "tslint": "^5.20.1",
+    "typescript": "^4.3.5"
   },
   "dependencies": {
     "@types/body-parser": "^1.19.1",
-    "@types/node": "^14.0.4",
+    "@types/node": "^14.17.7",
     "axios": "^0.21.1",
     "config": "^3.3.6",
-    "express": "^4.16.4",
-    "express-validator": "^6.12.0",
-    "mongoose": "^5.13.3",
+    "express": "^4.17.1",
+    "express-validator": "^6.12.1",
+    "mongoose": "^5.13.5",
     "winston": "^3.3.3"
   }
 }
