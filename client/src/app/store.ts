@@ -1,9 +1,9 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import registerReducer from '../features/register/registerReducer';
+import calculateSumAssureReducer from '../features/calculateForm/calculateSumAssuredReducer';
 
 export const store = configureStore({
   reducer: {
-    register: registerReducer,
+    calculateAssured: calculateSumAssureReducer
   },
 });
 
