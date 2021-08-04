@@ -1,22 +1,22 @@
 export interface GetProductRequest {
-    firstName: string,
-    lastName: string,
-    gender: string,
-    dob: string,
-    plan: string,
-    premium: number,
-    paymentTerm: string
+    firstName: string;
+    lastName: string;
+    gender: string;
+    dob: string;
+    plan: string;
+    premium: number;
+    paymentTerm: string;
 }
 
 export interface GetProductResponse {
-    baseSumAssured: number,
-    baseAnnualPremium: number,
-    productTerm: number,
-    paymentFrequency: String,
-    plan: PlanResponse,
+    baseSumAssured: number;
+    baseAnnualPremium: number;
+    productTerm: number;
+    paymentFrequency: String;
+    plan: PlanResponse;
 }
 
 export interface PlanResponse {
-    code: String,
-    package: String
+    code: String;
+    package: String;
 }

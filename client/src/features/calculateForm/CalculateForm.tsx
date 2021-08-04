@@ -9,13 +9,42 @@ import { RootState } from '../../app/store';
 const CalculateForm = () => {
     const [firstName, setFirstName] = useState('');
     const [surname, setSurname] = useState('');
-    const [gender, setGender] = useState('');
+    const [gender, setGender] = useState('MALE');
     const [dob, setDOB] = useState('1990-01-01');
-    const [plan, setPlan] = useState('');
-    const [premium, setPremium] = useState(0);
-    const [paymentFrequency, setPaymentFrequency] = useState('');
+    const [plan, setPlan] = useState('T11A20');
+    const [premium, setPremium] = useState<number>(0);
+    const [paymentFrequency, setPaymentFrequency] = useState('YEARLY');
+    const [formValid, setFormValid] = useState({
+        firstNameValid: true,
+        surnameValid: true,
+        planValid: true,
+        premiumValid: true,
+    });
     const dispatch = useDispatch();
     const calculateSuccess = useSelector((state: RootState) => state.calculateAssured.success);
+
+    const validateForm = (): boolean => {
+        let valid = true;
+        let errors: any = {
+            firstNameValid: true,
+            surnameValid: true,
+            premiumValid: true,
+        }
+        if (!firstName) {
+            errors.firstNameValid = false;
+            valid = false;
+        }
+        if (!surname) {
+            errors.surnameValid = false;
+            valid = false;
+        }
+        if (premium <= 0) {
+            errors.premiumValid = false;
+            valid = false;
+        }
+        setFormValid(errors);
+        return valid;
+    }
 
     if (calculateSuccess) {
         return <Redirect push to='/result' />
@@ -23,17 +52,18 @@ const CalculateForm = () => {
 
     const handleSubmit = async (evt: any) => {
         evt.preventDefault();
-        let req: GetProductRequest = {
-            firstName: firstName,
-            lastName: surname,
-            gender: gender,
-            dob: dob,
-            plan: plan,
-            premium: premium,
-            paymentTerm: paymentFrequency
-        };
-        console.log(req);
-        dispatch(calculateInsurance(req));
+        if (validateForm()) {
+            let req: GetProductRequest = {
+                firstName: firstName,
+                lastName: surname,
+                gender: gender,
+                dob: dob,
+                plan: plan,
+                premium: premium,
+                paymentTerm: paymentFrequency
+            };
+            dispatch(calculateInsurance(req));
+        }
     }
 
     const handleFirstNameChange = (event: React.ChangeEvent<{ value: unknown }>) => {
@@ -74,6 +104,8 @@ const CalculateForm = () => {
                                 label="First name" 
                                 id="firstName" 
                                 fullWidth 
+                                error={!formValid.firstNameValid}
+                                helperText={formValid.firstNameValid ? '' : 'Incorrect entry.'}
                                 onChange={handleFirstNameChange}
                                 placeholder="First name" />
                         </Grid>
@@ -82,6 +114,8 @@ const CalculateForm = () => {
                                 label="Surname" 
                                 id="surname" 
                                 fullWidth 
+                                error={!formValid.surnameValid}
+                                helperText={formValid.surnameValid ? '' : 'Incorrect entry.'}
                                 onChange={handleSurameChange}
                                 placeholder="Surname"  />
                         </Grid>
@@ -143,6 +177,7 @@ const CalculateForm = () => {
                                         id="premium"
                                         value={premium}
                                         onChange={handlePremiumChange}
+                                        error={!formValid.premiumValid}
                                         startAdornment={<InputAdornment position="start">฿</InputAdornment>}
                                     />
                                 </FormControl>
