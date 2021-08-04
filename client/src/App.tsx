@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import CalculateForm from './features/calculateForm/CalculateForm';
 import './App.css';
 import { Container } from '@material-ui/core';
@@ -10,6 +10,7 @@ function App() {
       <Router>
         <Route path="/form" component={CalculateForm} />
         <Route path="/result" component={CalculateResult} />
+        <Redirect from="*" to="/form" />
       </Router>
     </Container>
   );

@@ -34,10 +34,11 @@ export const calculateSumAssureSlice = createSlice({
 export default calculateSumAssureSlice.reducer;
 
 const { calculateSumAssure } = calculateSumAssureSlice.actions;
+const serverHost = process.env.SERVER_HOST || 'http://localhost:3001'
 
 export const calculateInsurance = (req: GetProductRequest): ThunkAction<void, RootState, unknown, PayloadAction<GetProductResponse>> => async dispatch => {
     try {
-        axios.post('http://localhost:3001/api/getProduct', req, {
+        axios.post(`${serverHost}/api/getProduct`, req, {
             headers: {
                 'Content-Type': 'application/json'
             }

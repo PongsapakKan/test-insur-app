@@ -55,7 +55,7 @@ const CalculateResult = () => {
                     <Grid container justifyContent="center">
                         <Grid item xs={1}></Grid>
                         <Grid item xs={5}>
-                            <span>Plan package:</span>
+                            <span>Package:</span>
                         </Grid>
                         <Grid item xs={5}>
                             <span>{calculateAssured.plan.package}</span>

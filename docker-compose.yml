@@ -1,0 +1,44 @@
+version: "3"
+services: 
+    server:
+        container_name: server-app
+        build: 
+            context: ./server/
+            dockerfile: Dockerfile
+        ports:
+            - "3001:3000"
+        environment:
+            PORT: 3000
+            MONGO_URI: mongodb://mongodb:27017/product
+        depends_on:
+            - mongodb
+        networks:
+            - backend
+            - frontend
+    client:
+        container_name: client-app
+        build: 
+            context: ./client/
+            dockerfile: Dockerfile
+        ports:
+            - "3000:3000"
+        environment:
+            SERVER_HOST: server:3000
+        depends_on:
+            - server
+        volumes:
+            - './client:/usr/src/app'
+            - '/usr/src/app/node_modules'
+        networks:
+            - frontend
+    mongodb:
+        image: mongo
+        ports:
+            - "27020:27017"
+        networks:
+            - backend
+networks:
+    frontend: 
+        driver: bridge
+    backend:
+        driver: bridge

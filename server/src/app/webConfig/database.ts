@@ -3,7 +3,7 @@ import { ConnectionOptions, connect } from "mongoose";
 
 const connectDB = async () => {
     try {
-        const mongoURI: string = config.get("MongoURI");
+        const mongoURI: string = process.env.MONGO_URI || config.get("MongoURI");
         const options: ConnectionOptions = {
             useNewUrlParser: true,
             useCreateIndex: true,
