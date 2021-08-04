@@ -32,6 +32,7 @@ services:
         networks:
             - frontend
     mongodb:
+        container_name: mongodb
         image: mongo
         ports:
             - "27020:27017"

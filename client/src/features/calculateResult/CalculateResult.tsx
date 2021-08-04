@@ -5,7 +5,7 @@ import { GetProductResponse } from "../calculateForm/getProductModel";
 
 const CalculateResult = () => {
     const calculateAssured: GetProductResponse = useSelector((state: RootState) => state.calculateAssured.result) as GetProductResponse;
-    console.log(calculateAssured);
+
     return (
         <div>
             <Grid container spacing={3}>
