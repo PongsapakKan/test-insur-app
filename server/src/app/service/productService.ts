@@ -2,7 +2,7 @@ import axios from "axios";
 import config from "config";
 import { GetProductRequest } from "../models/api/request/getProductRequest";
 import { GetProductResponse } from "../models/api/response/calculatedResponse";
-import { saveRegisterInfo } from "../repository/productRepository";
+import { saveProductInfo } from "../repository/productRepository";
 
 const getProductUrl = config.get("ExternalEndpoint.getProduct.url");
 const token = config.get("ExternalEndpoint.getProduct.token");
@@ -35,7 +35,7 @@ export async function getProduct(req: GetProductRequest): Promise<GetProductResp
             paymentTerm: req.paymentTerm,
             sumAssured: product.baseSumAssured
         };
-        saveRegisterInfo(doc);
+        saveProductInfo(doc);
 
         let planPackage: string;
         switch(product.planCode) {
